@@ -1,0 +1,10 @@
+<div class="info float right">
+|	페이지 편집
+</div>	
+<%= page_title "#{@page.title}" %>
+
+<% airbudd_form_for @page do |form| %>
+	<%= form.text_area :body, :label => '', :cols => 103 %>
+	<%= form.submit '저장' %>
+	<%= link_to '취소', :back %>
+<% end %>	

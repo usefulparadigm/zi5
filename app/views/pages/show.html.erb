@@ -1,0 +1,13 @@
+<%= page_title @page.title %>
+
+<div id="page_area">
+	<%= @page.body.to_html %>
+</div>	
+
+<div id="control_area" class="command right">
+	최종수정: <%= @page.updated_at.to_s(:db) %> by <%= @page.user || APP_CONFIG[:guest_name] %>
+	<% if logged_in? %>
+		| <%= link_to '편집', edit_page_path(@page) %>	|
+		<%= link_to '삭제', page_path(@page), :method => :delete, :confirm => '삭제할까요?' %>
+	<% end %>	
+</div>

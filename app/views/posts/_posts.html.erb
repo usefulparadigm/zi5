@@ -1,0 +1,16 @@
+<table>
+	<% @posts.each_with_index do |post, i| %>
+	<tr>
+		<td><%= post.notice? ? APP_CONFIG[:notice] : @start_no - i  %></td>
+		<td class="title"><%= link_to_unless_current h(post.title), board_post_path(@board, post) %></td>
+		<td><%= human_time(post.created_at) %></td>
+		<td><%= post.user || APP_CONFIG[:guest_name] %></td>
+		<td><%= post.view_count %></td>
+	</tr>	
+	<% end %>
+</table>	
+
+<div class="pagination">
+  <%= will_paginate @posts, :container => false, 
+			:previous_label => APP_CONFIG[:previous_label], :next_label => APP_CONFIG[:next_label] %>
+</div>

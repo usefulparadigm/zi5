@@ -1,0 +1,14 @@
+<%= page_title "새글쓰기" %>
+
+<% airbudd_form_for [@board, @post] do |form| %>
+	<%= form.text_field :title, :size => 70, :label => '제목' %>
+	<%= form.text_area :body, :cols => 107, :label => '' %>
+	<% if logged_in? %>
+		<%= form.check_box :notice, :label => APP_CONFIG[:notice] %>
+	<% end %>	
+	<% unless logged_in? %>
+		<p>로그인 하지 않은 사용자에 대한 신원 확인 절차</p>
+	<% end %>
+	<%= form.submit '저장' %>
+	<%= link_to '취소', :back %>
+<% end %>	

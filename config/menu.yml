@@ -1,0 +1,22 @@
+- 새소식: 
+  - 공지사항: /pages/notice
+  - 보도자료: /boards/press_release
+- 커뮤니티:
+  - 루비마을: /boards/ruby
+  - 파이썬:
+    - 쟁고: /boards/django
+    - 라이브러리: /pages/library
+- 레일스 레시피:
+  - 데이터베이스:
+    - 액티브레코드: /boards/active_record
+  - 액션팩:  
+    - 액션컨트롤러: /boards/action_controller
+    - 액션뷰: /boards/action_view
+- 프로젝트:
+  - 오픈소스: 
+    - zi2: /boards/zi2
+    - zi5: /boards/zi5
+    - tinkernote: /boards/tinkernote
+  - 플라타너스트리: /boards/ptree
+  - zi5개발노트: /boards/zi5_dev
+  

@@ -1,0 +1,25 @@
+<div class="info float right">
+	<%= APP_CONFIG[:notice] if @post.notice? %>
+	| <%= link_to @board.title, board_path(@board) %>
+</div>	
+<%= page_title @post.title %>
+
+<div id="body_area">
+	<%= @post.body.to_html %>
+</div>
+
+<div id="control_area" class="command right">
+	조회수: <%= @post.view_count %> |
+	최종수정: <%= @post.updated_at.to_s(:db) %> by <%= @post.user || APP_CONFIG[:guest_name] %>
+	<% if logged_in? %>
+		| <%= link_to '수정', edit_board_post_path(@board, @post) %>
+		| <%= link_to '삭제', board_post_path(@board, @post), :method => :delete, :confirm => '삭제할까요?' %>
+		| <%= link_to '새글', new_board_post_path(@board) %>
+	<% end %>	
+</div>
+
+<hr/>
+
+<div id="post_list">	
+	<%= render :partial => 'posts' %>	
+</div>

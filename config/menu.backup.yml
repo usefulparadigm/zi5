@@ -1,0 +1,15 @@
+- 커뮤니티:
+  - 루비마을
+- 레일스 레시피:
+  - 데이터베이스:
+    - 액티브레코드: { type: board, name: active_record, description: "액티브레코드와 관련된 자료들을 모아놓은 곳입니다." }
+    - 액션컨트롤러: 
+- 프로젝트:
+  - ccMixter: { type: board, name: ccmixter }
+- 테스트:  
+  - 제목만
+  - 제목과 콜론:
+  - 제목과 콜론과 값: {type: page, name: just_do_it}  
+  - 제목과 1단:
+    - 1단  
+    
