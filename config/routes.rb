@@ -7,13 +7,19 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :session
 
   map.board '/boards/:board_id', :controller => 'posts', :action => 'index'
+  map.board '/boards/:board_id.:format', :controller => 'posts', :action => 'index'
   map.wiki '/wiki/:id', :controller => 'pages', :action => 'show'
+  map.search '/search', :controller => 'posts'
 
 
   map.resources :pages
-  map.resources :boards do |boards|
-    boards.resources :posts 
-  end
+  # map.resources :boards, :shallow => true do |board|
+  #   board.resources :posts do |post|
+  #     post.resources :replies
+  #   end
+  # end
+  map.resources :boards, :has_many => :posts
+  map.resources :posts, :has_many => :replies
 
   map.root :controller => "pages", :action => 'show', :id => 'Home'
 

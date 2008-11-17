@@ -20,6 +20,37 @@
 
 <hr/>
 
-<div id="post_list">	
-	<%= render :partial => 'posts' %>	
+<div id="reply_area">
+	<h4>답글</h4>
+	<ul id="reply_list">
+		<%= render :partial => 'reply', :collection => @post.replies %>
+	</ul>
+	<% airbudd_form_for :reply, :url => post_replies_path(@post) do |form| %>
+		<%= hidden_field_tag 'reply[title]', "[Re] #{h(@post.title)}" %>
+		<%= form.text_area :body, :cols => 107, :label => '', :class => 'reply_area' %>
+		<div class="clear"></div>
+		<% unless logged_in? %>
+			<%= render :partial => 'guest_form', :object => form %>
+		<% end %>
+		<div class="right">
+			<%= link_to '취소', :back %>
+			<%= form.submit '답글추가' %>
+		</div>	
+	<% end %>
 </div>
+
+<hr/>
+
+<div id="trackback_area">
+	<h4 class="left">트랙백</h4>
+
+
+</div>
+
+<hr/>
+
+<% with_pagination @posts, :head => false do %>
+	<div id="post_list">	
+		<%= render :partial => 'posts' %>	
+	</div>
+<% end %>

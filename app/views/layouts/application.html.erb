@@ -5,6 +5,9 @@
 	<link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<title><%= APP_CONFIG[:site_name] + (@title ? " - #{@title}" : ' - Website Prototype Builder') %></title>
+	<% if current_page?(:controller => 'posts', :action => 'index') %>
+		<link rel="alternate" type="application/atom+xml" title="ATOM" href="<%= formatted_board_url(@board, :atom) %>" />
+	<% end %>
 	<link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print"> 
 	<!--[if IE]>
@@ -18,7 +21,7 @@
 	<%= javascript_tag "var AUTH_TOKEN='#{form_authenticity_token}';" if protect_against_forgery? %>
 	<script type="text/javascript"> 
 	    $(document).ready(function(){ 
-	        $("ul.sf-menu").superfish({ pathClass: 'current' }); 
+	        $("ul.sf-menu").superfish(); 
 	    }); 
 	</script>
 	<%= javascript_include_tag 'application' %>
@@ -33,6 +36,9 @@
 		</div>
 		
 		<div id="top_nav_area" class="span-24">
+			<div id="search_box" class="float right">
+				<%= render :partial => 'layouts/search' %>
+			</div>	
 			<%= render :partial => 'layouts/top_nav' %>
 		</div>
 
@@ -51,5 +57,12 @@
 		</div>
 		
 	</div><!-- end of container -->
+
+	<% if flash[:notice] %>	
+		<script type="text/javascript" charset="utf-8">
+			alert("<%= flash[:notice] %>");
+		</script>
+	<% end %>
+
 </body>
 </html>

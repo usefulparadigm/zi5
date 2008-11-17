@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :name, :password, :password_confirmation
 
   def to_s; login end
-
+  def to_param; login end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   #
@@ -51,6 +51,4 @@ class User < ActiveRecord::Base
 
   protected
     
-
-
 end

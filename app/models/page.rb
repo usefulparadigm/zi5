@@ -5,6 +5,7 @@ class Page < ActiveRecord::Base
   validates_uniqueness_of :name
 
   acts_as_wikitext :body
+  simply_searchable
   
   def to_param; name end
 end

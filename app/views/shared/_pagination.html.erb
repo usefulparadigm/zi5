@@ -1,0 +1,19 @@
+<% if head %>
+	<div class="pagination">
+	  <div class="page_info info">
+			<% if current_page?(:controller => 'posts', :action => 'index') %>
+				<%= link_to image_tag('rss.gif'), formatted_board_url(@board, :atom) %>
+			<% end %>	
+	    <%= page_entries_info entries %>
+	  </div>
+	</div>
+<% end %>
+
+<%= body %>
+
+<% if tail %>
+	<div class="pagination">
+	  <%= will_paginate entries, :container => false, 
+				:previous_label => APP_CONFIG[:previous_label], :next_label => APP_CONFIG[:next_label] %>
+	</div>
+<% end %>

@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
-  before_filter :login_required, :except => [:show]
+  before_filter :login_required, :except => [:index, :show]
+
+  def index # search
+    # @results = Page.where_title(params[:swd]) + Post.where_title(params[:swd])
+    # @results = @results.paginate :page => params[:page] #+ Posts.where_title(params[:swd])
+    # @posts = Post.where_title(params[:swd]).paginate :page => params[:page]
+  end
 
   def show
     @page = Page.find_by_name(params[:id])

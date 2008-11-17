@@ -1,0 +1,9 @@
+<li id="reply_<%= reply.id %>" class="reply">
+	<div class="atby right">
+		by <%= link_to reply.user, user_path(reply.user) %> |
+		<%= human_time(reply.created_at) %>
+	</div>	
+	<div class="body">
+		<%= reply.body %>
+	</div>	
+</li>

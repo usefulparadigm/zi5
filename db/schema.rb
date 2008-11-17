@@ -10,6 +10,7 @@ ActiveRecord::Schema.define do
     t.column :updated_at,                :datetime
     t.column :remember_token,            :string, :limit => 40
     t.column :remember_token_expires_at, :datetime
+    t.column :admin, :boolean, :default => false
   end
 
   add_index :users, :login, :unique => true
@@ -23,8 +24,15 @@ ActiveRecord::Schema.define do
     t.datetime :created_at, :updated_at
     t.boolean :notice, :default => false
     t.boolean :tmp, :default => false
+    # t.string :key, :limit => 10
+    t.integer :parent_id
+    t.integer :replies_count, :default => 0
+    t.string :visitor, :limit => 20
+    t.string :homepage, :limit => 100
+    t.string :password
   end
   add_index :posts, :board_id
+  add_index :posts, :parent_id
 
   create_table "boards", :force => true do |t|
     t.string :title, :name
@@ -39,6 +47,7 @@ ActiveRecord::Schema.define do
     t.text :body
     t.integer :user_id
     t.datetime :created_at, :updated_at
+    t.boolean :wiki, :default => true
   end
   add_index :pages, :name, :unique => true 
 

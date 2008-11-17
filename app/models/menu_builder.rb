@@ -34,7 +34,8 @@ class MenuBuilder
         data.each { |menu| html << create_menu(menu) }
         html << "</ul>\n"
       elsif data.class == Hash
-        html << "<li>#{make_link(data)}"
+        html << "<li class=\"<%= 'current' if current_page_in?(#{find_all_links(data)}) %>\">"
+        html << make_link(data)
         html << create_menu(data.values.first) if data.values.first.class == Array
         html << "</li>\n"
       end
@@ -69,7 +70,8 @@ class MenuBuilder
         data.each { |top_menu| html << create_menu(top_menu) }
       else
         data.each do |top_menu|
-          html << "<li><a href=\""
+          html << "<li class=\"<%= 'current' if current_page_in?(#{find_all_links(top_menu)}) %>\">"
+          html << "<a href=\""
           href = find_first_link(top_menu)
           html << href || "#"
           html << "\">#{top_menu.keys.first}</a></li>"

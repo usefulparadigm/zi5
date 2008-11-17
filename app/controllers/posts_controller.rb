@@ -5,15 +5,26 @@ class PostsController < ApplicationController
   PER_PAGE = 10
 
   def index
+    if params[:swd]
+      @posts = Post.title_or_body(params[:swd]).recent.paginate :page => params[:page], :per_page => PER_PAGE
+      @post_count = @posts.size
+      @title = "\"#{params[:swd]}\"에 대한 검색 결과"
+    else
+      @posts = @board.posts.recent.paginate :page => params[:page], :per_page => PER_PAGE
+      @post_count = @board.posts.size
+      @title = @board.title
+    end  
 		page = params[:page] ? params[:page].to_i : 1
-    @posts = @board.posts.recent.paginate :page => params[:page], :per_page => PER_PAGE
-    @post_count = @board.posts.size
     @start_no = @post_count - ((page-1) * PER_PAGE)
+    respond_to do |format|
+      format.html { render :action => 'search' if params[:swd] }
+      format.atom
+    end
   end
 
   def show
     index
-    @post = @board.posts.find(params[:id])
+    @post = @board.posts.find(params[:id], :include => :replies)
     @post.view request.remote_ip, current_user
   end
 

@@ -7,9 +7,15 @@ module ApplicationHelper
     end
   end
 
-  def block_to_partial(partial_name, options={}, &block)
+  def block_to_partial(partial_name, options = {}, &block)
     options.merge!(:body => capture(&block))
-    concat(render(:partial => partial_name, :local => options), block.building)
+    concat(render(:partial => partial_name, :locals => options), block.binding)
+  end
+
+	def with_pagination(entries, options={}, &block)
+	  defaults = { :entries => entries, :head => true, :tail => true }
+	  defaults.merge!(options)
+	  block_to_partial('shared/pagination', defaults, &block)
   end
 
 	def page_title(title, htag=:h2)
@@ -59,6 +65,7 @@ module ApplicationHelper
   end
   
   def current_page_in?(*paths)
-    paths.inject(false) { |b, path| b = true if current_page?(path); b }
+    # paths.inject(false) { |b, path| b | current_page?(path) }
+    paths.inject(false) { |b, path| b | request.request_uri.include?(path) }
   end
 end

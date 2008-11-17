@@ -1,37 +1,37 @@
 <ul id="side_nav" class="sf-menu sf-vertical">
 
-<% if current_page_in?('/pages/notice', '/boards/press_release') %><li><a href="/pages/notice">공지사항</a></li>
-<li><a href="/boards/press_release">보도자료</a></li>
+<% if current_page_in?('/pages/notice', '/boards/press_release') %><li class="<%= 'current' if current_page_in?('/pages/notice') %>"><a href="/pages/notice">공지사항</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/press_release') %>"><a href="/boards/press_release">보도자료</a></li>
 
-<% elsif current_page_in?('/boards/ruby', '/boards/django', '/pages/library') %><li><a href="/boards/ruby">루비마을</a></li>
-<li><a href="#">파이썬</a>
+<% elsif current_page_in?('/boards/ruby', '/boards/django', '/pages/library') %><li class="<%= 'current' if current_page_in?('/boards/ruby') %>"><a href="/boards/ruby">루비마을</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/django', '/pages/library') %>"><a href="#">파이썬</a>
 <ul>
-<li><a href="/boards/django">쟁고</a></li>
-<li><a href="/pages/library">라이브러리</a></li>
-</ul>
-</li>
-
-<% elsif current_page_in?('/boards/active_record', '/boards/action_controller', '/boards/action_view') %><li><a href="#">데이터베이스</a>
-<ul>
-<li><a href="/boards/active_record">액티브레코드</a></li>
-</ul>
-</li>
-<li><a href="#">액션팩</a>
-<ul>
-<li><a href="/boards/action_controller">액션컨트롤러</a></li>
-<li><a href="/boards/action_view">액션뷰</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/django') %>"><a href="/boards/django">쟁고</a></li>
+<li class="<%= 'current' if current_page_in?('/pages/library') %>"><a href="/pages/library">라이브러리</a></li>
 </ul>
 </li>
 
-<% elsif current_page_in?('/boards/zi2', '/boards/zi5', '/boards/tinkernote', '/boards/ptree', '/boards/zi5_dev') %><li><a href="#">오픈소스</a>
+<% elsif current_page_in?('/boards/active_record', '/boards/action_controller', '/boards/action_view') %><li class="<%= 'current' if current_page_in?('/boards/active_record') %>"><a href="#">데이터베이스</a>
 <ul>
-<li><a href="/boards/zi2">zi2</a></li>
-<li><a href="/boards/zi5">zi5</a></li>
-<li><a href="/boards/tinkernote">tinkernote</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/active_record') %>"><a href="/boards/active_record">액티브레코드</a></li>
 </ul>
 </li>
-<li><a href="/boards/ptree">플라타너스트리</a></li>
-<li><a href="/boards/zi5_dev">zi5개발노트</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/action_controller', '/boards/action_view') %>"><a href="#">액션팩</a>
+<ul>
+<li class="<%= 'current' if current_page_in?('/boards/action_controller') %>"><a href="/boards/action_controller">액션컨트롤러</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/action_view') %>"><a href="/boards/action_view">액션뷰</a></li>
+</ul>
+</li>
+
+<% elsif current_page_in?('/boards/zi2', '/boards/zi5', '/boards/tinkernote', '/boards/ptree', '/boards/zi5_dev') %><li class="<%= 'current' if current_page_in?('/boards/zi2', '/boards/zi5', '/boards/tinkernote') %>"><a href="#">오픈소스</a>
+<ul>
+<li class="<%= 'current' if current_page_in?('/boards/zi2') %>"><a href="/boards/zi2">zi2</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/zi5') %>"><a href="/boards/zi5">zi5</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/tinkernote') %>"><a href="/boards/tinkernote">tinkernote</a></li>
+</ul>
+</li>
+<li class="<%= 'current' if current_page_in?('/boards/ptree') %>"><a href="/boards/ptree">플라타너스트리</a></li>
+<li class="<%= 'current' if current_page_in?('/boards/zi5_dev') %>"><a href="/boards/zi5_dev">zi5개발노트</a></li>
 
 <% end %>
 </ul>
