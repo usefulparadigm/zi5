@@ -1,10 +1,13 @@
 <div class="info float right">
+	<span class="open_level level_<%= @board.open_level %>">
+		<%= OpenLevel.level(@board.open_level) if logged_in? %>
+	</span>	
 </div>	
 
 <%= page_title @board.title %>
 
 <div class="right">
-	<%= button_to '새글쓰기', new_board_post_path(@board), :method => :get if @board.public? || logged_in? %>
+	<%= button_to '새글쓰기', new_board_post_path(@board), :method => :get %>
 </div>
 
 <% with_pagination @posts do %>

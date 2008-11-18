@@ -1,8 +1,10 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
-  end
+  should_belong_to :user
+  should_belong_to :board
+
+  should_require_attributes :title, :message => '필수입력입니다'
+  should_require_attributes :body
+  
 end

@@ -1,0 +1,11 @@
+<%= form.text_field :title, :size => 70, :label => '제목' %>
+<%= form.text_area :body, :cols => 107, :label => '' %>
+<%= form.check_box :notice, :label => APP_CONFIG[:notice] if logged_in? %>
+<% unless logged_in? %>
+	<%= render :partial => 'guest_form', :object => form %>
+<% end %>
+<hr class="space"/>
+<div class="right">
+	<%= link_to '취소', :back %>
+	<%= form.submit '저장' %>
+</div>

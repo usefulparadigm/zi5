@@ -2,8 +2,35 @@
 @import 'default.css';
 @import 'pagination.css';
 
-#reply_area p.text { 
-	float: left;
-	margin-right: 20px;
+
+.reply_area { height: 80px; }
+
+li.reply {
+	list-style-image: url(/images/icon_reply.gif);
+	list-style-position: inside;
+	margin: 10px 0; 
+	padding-bottom: 5px;
+	padding-right: 10px;
+	border-bottom: 1px dashed #ddd;
 }
 
+ul.guest_only {
+	list-style: none;
+}
+ul.guest_only label, ul.guest_only li, ul.guest_only div.fieldWithErrors {
+	display: inline;
+}
+ul.guest_only label { 
+	padding-right: 6px;
+}
+ul.guest_only li { 
+	margin-right: 10px;
+}
+div.fieldWithErrors input {
+	border: 2px solid red;
+}
+
+.open_level.level_0 {
+	padding-left: 20px;
+	background: url(/images/lock.gif) no-repeat left;
+}

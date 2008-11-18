@@ -9,7 +9,7 @@ ActionController::Routing::Routes.draw do |map|
   map.board '/boards/:board_id', :controller => 'posts', :action => 'index'
   map.board '/boards/:board_id.:format', :controller => 'posts', :action => 'index'
   map.wiki '/wiki/:id', :controller => 'pages', :action => 'show'
-  map.search '/search', :controller => 'posts'
+  map.search '/search', :controller => 'posts', :action => 'search'
 
 
   map.resources :pages

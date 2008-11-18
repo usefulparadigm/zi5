@@ -1,3 +1,5 @@
-<%= guest_form.text_field :visitor, :label => '이름', :size => 20, :required => true %>
-<%= guest_form.text_field :homepage, :label => '홈페이지(블로그) 주소', :size => 40 %>
-<%= guest_form.password_field :password, :label => '비밀번호', :size => 10 %>
+<ul class="guest_only">
+	<li><%= guest_form.text_field :visitor, :label => '이름', :size => 18, :required => true %></li>
+	<li><%= guest_form.text_field :homepage, :label => '홈페이지 주소', :size => 40 %></li>
+	<li><%= guest_form.password_field :password, :label => '비밀번호', :size => 10 %></li>
+</ul>	

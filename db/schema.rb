@@ -24,7 +24,6 @@ ActiveRecord::Schema.define do
     t.datetime :created_at, :updated_at
     t.boolean :notice, :default => false
     t.boolean :tmp, :default => false
-    # t.string :key, :limit => 10
     t.integer :parent_id
     t.integer :replies_count, :default => 0
     t.string :visitor, :limit => 20
@@ -35,12 +34,14 @@ ActiveRecord::Schema.define do
   add_index :posts, :parent_id
 
   create_table "boards", :force => true do |t|
-    t.string :title, :name
+    t.string :title
+    t.string :name, :limit => 20
     t.integer :posts_count, :default => 0
     t.datetime :created_at
-    t.boolean :public, :default => true
+    t.integer :open_level, :default => 99 # open all rights to all users
   end
   add_index :boards, :name, :unique => true 
+  add_index :boards, :open_level
 
   create_table "pages", :force => true do |t|
     t.string :title, :name

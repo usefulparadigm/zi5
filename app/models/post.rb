@@ -8,21 +8,19 @@ class Post < ActiveRecord::Base
 
   validates_presence_of :title, :message => "필수입력입니다", :unless => Proc.new { |post| post.tmp? }
   validates_presence_of :body
-  validates_presence_of :visitor, :allow_nil => true
+  validates_presence_of :visitor, :unless => Proc.new { |post| post.user }
 
   acts_as_viewed 
   acts_as_wikitext :body
 
-  # simply_searchable
-
-  # has_random_key :key, :size => 5, :include => [:number, :downcase]
-  # def to_param; key end
-  
   named_scope :recent, :order => 'notice DESC, created_at DESC'
   named_scope :tmp, :conditions => ['tmp = ?', true]
-  named_scope :title_or_body, lambda { |swd| 
+  named_scope :title_or_body_like, lambda { |swd| 
     { :conditions => ['title LIKE ? OR body LIKE ?', "%#{swd}%", "%#{swd}%"], :include => :board }}
 
   def self.tmp!; create(:tmp => true) end
+
+  def author; self.user || visitor end
+
 end
 

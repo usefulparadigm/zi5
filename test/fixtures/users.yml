@@ -28,4 +28,8 @@ old_password_holder:
   crypted_password:          00742970dc9e6319f8019fd54864d3ea740f04b1 # test
   created_at:                <%= 1.days.ago.to_s :db %>
 
+itsme:
+  id: 4
+  login: itsme
+  email: sjoonk@gmail.com
 

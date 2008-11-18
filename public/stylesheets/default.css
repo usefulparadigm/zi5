@@ -22,7 +22,6 @@ label em { color: red; }
 select { margin:0; padding 0; }
 /*input[type=checkbox], label { vertical-align: middle; }*/
 textarea { width: auto; }
-.reply_area { height: 100px; }
 table tr { background: url(/images/border-bottom.gif) repeat-x bottom; }
 table tr:hover { background-color: #eee; }
 table td.title { min-width: 65%; }
@@ -36,12 +35,6 @@ a.action, .command { font-size: 0.9em; }
 .ui-tabs-hide { display: none; } /* for jQuery Tabs */
 a[href^="http"].external { padding-right: 12px; background: url(/images/external.png) no-repeat center right; } 
 em.logo {	font-weight: bold; }
-li.reply {
-	list-style-image: url(/images/icon_reply.gif);
-	margin: 10px 0; padding-bottom: 10px;
-	border-bottom: 1px dashed #ddd;
-}
-p.text { margin: 0; padding: 0; }
 
 /* Basic Page Layout */
 ul.menu {	display: inline; }

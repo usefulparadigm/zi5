@@ -15,6 +15,7 @@
 	<![endif]-->
 	<%= stylesheet_link_tag 'style' %>
 	<%= stylesheet_link_tag 'superfish', 'superfish-vertical', 'superfish-navbar' %>
+	<%= stylesheet_link_tag('stickies') %>
 	<%= javascript_include_tag 'jquery-1.2.6.min', 'jquery-ui.min', 'jrails' %>
 	<%= javascript_include_tag 'jquery.form', 'jquery.livequery', 'jquery.cookie', 'jquery.corner' %>
 	<%= javascript_include_tag 'hoverIntent', 'superfish', 'supersubs' %>
@@ -48,6 +49,7 @@
 				<%= render :partial => 'layouts/side_nav' %>
 			</div>
 			<div id="main_area" class="span-18 last">
+				<%= render_stickies(:close => 'x') %>
 				<%= yield  %>
 			</div>	
 		</div><!-- end of content -->
@@ -58,11 +60,11 @@
 		
 	</div><!-- end of container -->
 
-	<% if flash[:notice] %>	
+	<!-- <% if flash[:notice] %>	
 		<script type="text/javascript" charset="utf-8">
 			alert("<%= flash[:notice] %>");
 		</script>
-	<% end %>
+	<% end %> -->
 
 </body>
 </html>

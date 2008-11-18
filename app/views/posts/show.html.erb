@@ -1,5 +1,8 @@
 <div class="info float right">
-	<%= APP_CONFIG[:notice] if @post.notice? %>
+	<%= "(#{APP_CONFIG[:notice]})" if @post.notice? %>
+	<span class="open_level level_<%= @board.open_level %>">
+		<%= OpenLevel.level(@board.open_level) if logged_in? %>
+	</span>	
 	| <%= link_to @board.title, board_path(@board) %>
 </div>	
 <%= page_title @post.title %>
@@ -11,11 +14,11 @@
 <div id="control_area" class="command right">
 	조회수: <%= @post.view_count %> |
 	최종수정: <%= @post.updated_at.to_s(:db) %> by <%= @post.user || APP_CONFIG[:guest_name] %>
-	<% if logged_in? %>
+	<% if logged_in? && current_user.owner?(@post) %>
 		| <%= link_to '수정', edit_board_post_path(@board, @post) %>
 		| <%= link_to '삭제', board_post_path(@board, @post), :method => :delete, :confirm => '삭제할까요?' %>
-		| <%= link_to '새글', new_board_post_path(@board) %>
 	<% end %>	
+	| <%= link_to '새글', new_board_post_path(@board) %>
 </div>
 
 <hr/>
@@ -25,13 +28,13 @@
 	<ul id="reply_list">
 		<%= render :partial => 'reply', :collection => @post.replies %>
 	</ul>
-	<% airbudd_form_for :reply, :url => post_replies_path(@post) do |form| %>
+	<% labeling_form_for :reply, :url => post_replies_path(@post) do |form| %>
 		<%= hidden_field_tag 'reply[title]', "[Re] #{h(@post.title)}" %>
 		<%= form.text_area :body, :cols => 107, :label => '', :class => 'reply_area' %>
-		<div class="clear"></div>
 		<% unless logged_in? %>
 			<%= render :partial => 'guest_form', :object => form %>
 		<% end %>
+		<hr class="space"/>
 		<div class="right">
 			<%= link_to '취소', :back %>
 			<%= form.submit '답글추가' %>
@@ -41,13 +44,11 @@
 
 <hr/>
 
-<div id="trackback_area">
+<!-- <div id="trackback_area">
 	<h4 class="left">트랙백</h4>
-
-
 </div>
 
-<hr/>
+<hr/> -->
 
 <% with_pagination @posts, :head => false do %>
 	<div id="post_list">	

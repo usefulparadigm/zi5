@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class BoardTest < ActiveSupport::TestCase
-  # Replace this with your real tests.
-  def test_truth
-    assert true
-  end
+  should_have_many :posts
+  should_require_unique_attributes :name
 end
