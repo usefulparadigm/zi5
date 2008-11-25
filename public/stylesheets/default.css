@@ -32,9 +32,12 @@ div.empty { background: #eee; margin:5px 0; padding: 10px 20px; font-style: ital
 #container { background: #fff; }
 div.info { font-size: 1.1em; color: #999; padding: 10px 0; }
 a.action, .command { font-size: 0.9em; }
-.ui-tabs-hide { display: none; } /* for jQuery Tabs */
 a[href^="http"].external { padding-right: 12px; background: url(/images/external.png) no-repeat center right; } 
 em.logo {	font-weight: bold; }
+
+/* for some jQuery plugins */
+.ui-tabs-hide { display: none; } /* for jQuery Tabs */
+.example { color: #666; }
 
 /* Basic Page Layout */
 ul.menu {	display: inline; }

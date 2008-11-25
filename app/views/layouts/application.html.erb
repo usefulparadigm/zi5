@@ -4,10 +4,8 @@
 	<link rel="shortcut icon" href="/favicon.ico" type="image/ico" />
 	<link rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon" />
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-	<title><%= APP_CONFIG[:site_name] + (@title ? " - #{@title}" : ' - Website Prototype Builder') %></title>
-	<% if current_page?(:controller => 'posts', :action => 'index') %>
-		<link rel="alternate" type="application/atom+xml" title="ATOM" href="<%= formatted_board_url(@board, :atom) %>" />
-	<% end %>
+	<%= title :site => APP_CONFIG[:site_name], :separator => '-' %>
+	<%= auto_discovery_link_tag(:atom, @feed_url, :title => @title) if @feed_url %>
 	<link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
 	<link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print"> 
 	<!--[if IE]>
@@ -17,7 +15,7 @@
 	<%= stylesheet_link_tag 'superfish', 'superfish-vertical', 'superfish-navbar' %>
 	<%= stylesheet_link_tag('stickies') %>
 	<%= javascript_include_tag 'jquery-1.2.6.min', 'jquery-ui.min', 'jrails' %>
-	<%= javascript_include_tag 'jquery.form', 'jquery.livequery', 'jquery.cookie', 'jquery.corner' %>
+	<%= javascript_include_tag 'jquery.form', 'jquery.livequery', 'jquery.cookie', 'jquery.corner', 'jquery.example' %>
 	<%= javascript_include_tag 'hoverIntent', 'superfish', 'supersubs' %>
 	<%= javascript_tag "var AUTH_TOKEN='#{form_authenticity_token}';" if protect_against_forgery? %>
 	<script type="text/javascript"> 
@@ -49,7 +47,7 @@
 				<%= render :partial => 'layouts/side_nav' %>
 			</div>
 			<div id="main_area" class="span-18 last">
-				<%= render_stickies(:close => 'x') %>
+				<%= render_stickies(:close => '닫기') %>
 				<%= yield  %>
 			</div>	
 		</div><!-- end of content -->

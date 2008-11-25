@@ -17,7 +17,6 @@ class PostsControllerTest < ActionController::TestCase
       assert_response :success
       assert_not_nil assigns(:posts)
       assert_not_nil assigns(:post_count)
-      assert_not_nil assigns(:title)
     end
     
     should "GET search" do
@@ -25,7 +24,7 @@ class PostsControllerTest < ActionController::TestCase
       assert_response :success
       assert_not_nil assigns(:posts)
       assert_not_nil assigns(:post_count)
-      assert_not_nil assigns(:title)
+      assert_template 'search'
     end
 
     should "GET show" do 

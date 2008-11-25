@@ -28,7 +28,7 @@
 	<ul id="reply_list">
 		<%= render :partial => 'reply', :collection => @post.replies %>
 	</ul>
-	<% labeling_form_for :reply, :url => post_replies_path(@post) do |form| %>
+	<% form_for :reply, :url => post_replies_path(@post) do |form| %>
 		<%= hidden_field_tag 'reply[title]', "[Re] #{h(@post.title)}" %>
 		<%= form.text_area :body, :cols => 107, :label => '', :class => 'reply_area' %>
 		<% unless logged_in? %>

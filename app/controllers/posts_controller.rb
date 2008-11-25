@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_filter :find_board, :except => [:home, :search]
+  before_filter :find_posts, :only => [:index, :show]
   before_filter :check_open_level, :except => [:home, :search]
   # protect_forms_from_spam
 
   PER_PAGE = 10
 
   def index
-    find_posts
-    @title = @board.title
+    @feed_url = formatted_board_posts_url(@board, :atom)
     respond_to do |format|
       format.html
       format.atom
@@ -17,11 +17,9 @@ class PostsController < ApplicationController
   def search
     @posts = Post.title_or_body_like(params[:swd]).recent.paginate :page => params[:page], :per_page => PER_PAGE
     @post_count = @posts.size
-    @title = "\"#{params[:swd]}\"에 대한 검색 결과"
   end
 
   def show
-    find_posts
     @post = @board.posts.find(params[:id], :include => :replies)
     @post.view request.remote_ip, current_user
   end
@@ -79,7 +77,7 @@ private
 
   def find_posts
     @posts = @board.posts.recent.paginate :page => params[:page], :per_page => PER_PAGE
-    @post_count = @board.posts.size
+    @post_count = @board.posts.count
 		page = params[:page] ? params[:page].to_i : 1
     @start_no = @post_count - ((page-1) * PER_PAGE)
   end

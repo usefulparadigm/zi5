@@ -5,7 +5,8 @@ class RepliesController < ApplicationController
     @reply = @post.replies.build(params[:reply])
     @reply.user = current_user
     unless @reply.save
-      flash[:notice] = @reply.errors.map(&:to_s).join('\n') #'Something wrong'
+      # flash[:notice] = @reply.errors.map(&:to_s).join('\n') #'Something wrong'
+      error_stickie(@reply.errors.full_messages.first)
     end
     redirect_to :back
   end

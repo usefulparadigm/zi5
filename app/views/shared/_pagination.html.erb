@@ -2,7 +2,7 @@
 	<div class="pagination">
 	  <div class="page_info info">
 			<% if current_page?(:controller => 'posts', :action => 'index') %>
-				<%= link_to image_tag('rss.gif'), formatted_board_url(@board, :atom) %>
+				<%= link_to image_tag('rss.gif'), @feed_url if @feed_url %>
 			<% end %>	
 	    <%= page_entries_info entries %>
 	  </div>
