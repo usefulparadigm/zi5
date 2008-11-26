@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_filter :find_board, :except => [:home, :search]
   before_filter :check_open_level, :except => [:home, :search]
+  protect_forms_from_spam :only => [:new, :edit, :show]
 
   PER_PAGE = 10
 
