@@ -1,8 +1,8 @@
 %tr[board]
+  %td= link_to board.title, board_posts_path(board)
   %td= board.name
-  %td= link_to board.title, object_path(board)
   %td= OpenLevel.level(board.open_level)
   %td= board.posts.size
   %td
-    = link_to 'Edit', edit_object_path(board)
-    = link_to 'Destroy', object_path(board), :confirm => 'Really destroy board?', :method => :delete
+    = link_to '수정', edit_object_path(board)
+    = link_to '삭제', object_path(board), :confirm => 'Really destroy board?', :method => :delete

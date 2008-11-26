@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ko">
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+	<%= title :site => APP_CONFIG[:site_name], :separator => '-' %>
+	<link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print"> 
+	<!--[if IE]>
+	  <link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection">
+	<![endif]-->
+	<%= stylesheet_link_tag 'style' %>
+	<%= stylesheet_link_tag 'superfish', 'superfish-vertical', 'superfish-navbar', 'stickies' %>
+	<%= javascript_include_tag 'jquery-1.2.6.min', 'jquery-ui.min', 'jrails' %>
+	<%#= javascript_include_tag 'jquery.form', 'jquery.livequery', 'jquery.cookie', 'jquery.corner', 'jquery.example' %>
+	<%#= javascript_include_tag 'hoverIntent', 'superfish', 'supersubs' %>
+	<%= javascript_tag "var AUTH_TOKEN='#{form_authenticity_token}';" if protect_against_forgery? %>
+	<%= javascript_include_tag 'application' %>
+	<%= yield :head -%>
+</head>	
+<body id="application">
+	<div class="container">
+
+		<div id="header" class="span-24">
+			<h1 id="logo"><%= link_to image_tag('zi5.gif', :alt => APP_CONFIG[:site_name]), root_url %></h1>
+			<%= render :partial => 'layouts/top_menu' -%>
+		</div>
+		
+		<div id="top_nav_area" class="span-24">
+			<div id="search_box" class="float right">
+				<%= render :partial => 'layouts/search' %>
+			</div>	
+			<%= render :partial => 'layouts/top_nav' %>
+		</div>
+
+		<div id="content" class="span-24">
+			<div id="sub_area" class="span-5 colborder">
+				<hr class="space"/>
+				<ul id="admin_menu">
+					<li><%= link_to_unless controller.controller_name == 'boards', '게시판 관리', admin_boards_path %></li>
+					<li><%= link_to_unless current_page?(:controller => 'users'), '사용자 관리', admin_users_path %></li>
+					<li><%= link_to '페이지 관리' %></li>
+				</ul>	
+			</div>
+			<div id="main_area" class="span-18 last">
+				<%= render_stickies(:close => '닫기') %>
+				<%= yield  %>
+			</div>	
+		</div><!-- end of content -->
+		
+		<div id="footer" class="span-24">
+			<%= render :partial => 'layouts/footer' %>
+		</div>
+		
+	</div><!-- end of container -->
+
+	<!-- <% if flash[:notice] %>	
+		<script type="text/javascript" charset="utf-8">
+			alert("<%= flash[:notice] %>");
+		</script>
+	<% end %> -->
+
+</body>
+</html>

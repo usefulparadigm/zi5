@@ -24,6 +24,7 @@ select { margin:0; padding 0; }
 textarea { width: auto; }
 table tr { background: url(/images/border-bottom.gif) repeat-x bottom; }
 table tr:hover { background-color: #eee; }
+table thead { background-color: #333; color: #ccc; }
 table td.title { min-width: 65%; }
 div.empty { background: #eee; margin:5px 0; padding: 10px 20px; font-style: italic; }
 .more {	font-size: 0.9em;	margin: 10px 0; }
@@ -114,3 +115,12 @@ ul#top_nav {
 #footer a {
 	color: #808080;
 }
+
+#admin_menu {
+	font-size: 1.1em;
+	list-style-type: square;
+	text-align: right;
+	color: #333;
+}
+#admin_menu a { color: #bbb; text-decoration: none; }
+#admin_menu a:hover { color: #777; text-decoration: underline; }

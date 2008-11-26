@@ -5,7 +5,7 @@ class OpenLevel
   OPEN=99
 
   def self.options
-    [['비공개', CLOSED], ['목록 공개', LIST_ONLY], ['내용 공개', READ_ONLY], ['완전공개', OPEN]]
+    [['비공개', CLOSED], ['목록보기', LIST_ONLY], ['내용보기', READ_ONLY], ['읽고쓰기', OPEN]]
   end
   
   def self.level(level)

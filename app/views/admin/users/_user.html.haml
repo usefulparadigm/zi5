@@ -1,0 +1,9 @@
+%tr[user]
+  %td= user
+  %td= user.login
+  %td= user.created_at.to_date
+  %td= user.posts.size
+  %td= user.admin? ? '관리자' : ''
+  %td
+    = link_to '수정', edit_object_path(user)
+    = link_to '삭제', object_path(user), :confirm => 'Really destroy user?', :method => :delete

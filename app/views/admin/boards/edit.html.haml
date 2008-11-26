@@ -1,4 +1,4 @@
-%h1 Editing board
+= page_title '게시판 수정' 
 
 = error_messages_for :board
 
@@ -6,6 +6,4 @@
   = render :partial => "form", :locals => {:f => f}
   %p= submit_tag "Update"
 
-= link_to 'Show', object_path
-|
 = link_to 'Back', objects_path

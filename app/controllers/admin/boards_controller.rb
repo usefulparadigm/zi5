@@ -1,8 +1,10 @@
-class Admin::BoardsController < ApplicationController
-  before_filter :admin_required
+class Admin::BoardsController < Admin::AdminController
   
   make_resourceful do
-    actions :all
+    actions :index, :new, :create, :edit, :update, :destroy # :all
+    response_for :create, :update do |format|
+      format.html { redirect_to admin_boards_path }
+    end
   end
 
   def current_object

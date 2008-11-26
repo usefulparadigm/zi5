@@ -1,0 +1,13 @@
+= page_title '사용자 관리'
+
+- with_pagination @users do
+  %table
+    %thead
+      %td 이름
+      %td 로그인ID
+      %td 가입일
+      %td 포스트 수
+      %td 권한
+      %td 액션
+    = render :partial => 'user', :collection => current_objects
+
