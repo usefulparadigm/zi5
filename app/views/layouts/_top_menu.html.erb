@@ -1,6 +1,10 @@
 <ul id="top_menu" class="menu">
 	<% if logged_in? %>
-		<li><%= link_to current_user, user_path(current_user) %> |</li>
+		<li><%= link_to current_user, user_path(current_user) -%>
+		<% if current_user.admin? %>
+			(<%= link_to '관리자', admin_path %>)
+		<% end %>
+		| </li>
 		<li><%= link_to '로그아웃', logout_path %></li>
 	<% else %>
 		<li><%= link_to '로그인', login_path %></li>

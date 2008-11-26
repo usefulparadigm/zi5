@@ -1,12 +1,11 @@
 class PostsController < ApplicationController
   before_filter :find_board, :except => [:home, :search]
-  before_filter :find_posts, :only => [:index, :show]
   before_filter :check_open_level, :except => [:home, :search]
-  # protect_forms_from_spam
 
   PER_PAGE = 10
 
-  def index
+  def index 
+    find_posts
     @feed_url = formatted_board_posts_url(@board, :atom)
     respond_to do |format|
       format.html
@@ -21,6 +20,7 @@ class PostsController < ApplicationController
 
   def show
     @post = @board.posts.find(params[:id], :include => :replies)
+    find_posts
     @post.view request.remote_ip, current_user
   end
 
@@ -71,9 +71,9 @@ private
     @board ||= Board.find_by_name(params[:board_id])
   end
   
-  def login_required_only_private
-    login_required unless @board.public?
-  end
+  # def login_required_only_private
+  #   login_required unless @board.public?
+  # end
 
   def find_posts
     @posts = @board.posts.recent.paginate :page => params[:page], :per_page => PER_PAGE

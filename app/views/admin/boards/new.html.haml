@@ -1,0 +1,9 @@
+= page_title '새 게시판'
+
+= error_messages_for :board
+
+- form_for(:board, :url => objects_url) do |f|
+  = render :partial => "form", :locals => {:f => f}
+  %p= submit_tag "Create"
+
+= link_to 'Back', objects_path

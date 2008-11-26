@@ -1,0 +1,10 @@
+= page_title @board.title
+
+%ul[current_object]
+  %li= @board.title
+
+= link_to 'Edit', edit_object_path
+|
+= link_to 'Destroy', object_path, :confirm => 'Really destroy board?', :method => :delete
+|
+= link_to 'Back', objects_path

@@ -1,0 +1,14 @@
+= page_title '게시판 관리'
+
+.right= button_to '새 게시판', new_object_path 
+
+- with_pagination @boards do
+  %table
+    %tr
+      %td 게시판ID
+      %td 제목
+      %td 공개도
+      %td 포스트 수
+      %td 액션
+    = render :partial => 'board', :collection => current_objects
+

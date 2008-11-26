@@ -1,4 +1,5 @@
 ActionController::Routing::Routes.draw do |map|
+
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.register '/register', :controller => 'users', :action => 'create'
@@ -11,7 +12,6 @@ ActionController::Routing::Routes.draw do |map|
   map.wiki '/wiki/:id', :controller => 'pages', :action => 'show'
   map.search '/search', :controller => 'posts', :action => 'search'
 
-
   map.resources :pages
   # map.resources :boards, :shallow => true do |board|
   #   board.resources :posts do |post|
@@ -22,6 +22,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :posts, :has_many => :replies
 
   map.root :controller => "pages", :action => 'show', :id => 'Home'
+
+  map.admin '/admin', :controller => 'admin/boards'
+  map.namespace :admin do |admin|
+    # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
+    admin.resources :boards
+  end
 
 
   # The priority is based upon order of creation: first created -> highest priority.
