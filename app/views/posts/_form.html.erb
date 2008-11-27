@@ -1,3 +1,7 @@
+<div class="info help float right">
+	<%= link_to '위키문법', 'http://en.wikipedia.org/wiki/Help:Wikitext_examples', :popup => true %> 사용 가능
+</div>	
+
 <%= form.text_field :title, :size => 70, :label => '제목' %>
 <%= form.text_area :body, :cols => 107, :label => '' %>
 <%= form.check_box :notice, :label => APP_CONFIG[:notice] if logged_in? %>

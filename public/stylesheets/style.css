@@ -34,3 +34,7 @@ div.fieldWithErrors input {
 	background: url(/images/lock.gif) no-repeat left;
 }
 
+.info.help {
+	padding-left: 20px;
+	background: url(/images/alert.gif) no-repeat left;
+}

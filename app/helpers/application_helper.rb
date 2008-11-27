@@ -66,6 +66,6 @@ module ApplicationHelper
   
   def current_page_in?(*paths)
     # paths.inject(false) { |b, path| b | current_page?(path) }
-    paths.inject(false) { |b, path| b | request.request_uri.include?(path) }
+    paths.inject(false) { |b, path| b | (request.request_uri == path || request.request_uri.include?(path + '/')) }
   end
 end
