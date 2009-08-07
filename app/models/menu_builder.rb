@@ -1,4 +1,43 @@
-class MenuBuilder 
+class MenuBuilder
+
+  def self.create_top_nav(data, cascading = true)
+    returning("<ul id=\"top_nav\" class=\"sf-menu\">\n") do |html|
+      if cascading
+        data.each { |top_menu| html << create_menu(top_menu) }
+      else
+        data.each do |top_menu|
+          html << "<li class=\"<%= 'current' if current_page_in?(#{find_all_links(top_menu)}) %>\">"
+          html << "<a href=\""
+          href = find_first_link(top_menu)
+          html << href || "#"
+          html << "\">#{top_menu.keys.first}</a></li>"
+        end
+      end
+      html << "</ul>"
+    end
+  end
+
+  def self.create_side_nav(data, submenu = false)
+    returning("<ul id=\"side_nav\" class=\"sf-menu sf-vertical\">\n") do |html|
+      unless submenu
+        data.each { |top_menu| html << create_menu(top_menu) }
+      else
+        data.each_with_index do |top_menu, idx|
+          # first_link = find_first_link(top_menu)
+          # unless first_link.nil?
+            html << "\n<% #{ idx == 0 ? 'if' : 'elsif' } current_page_in?(#{find_all_links(top_menu)}) %>"
+            top_menu.values.first.each do |menu|
+              html << create_menu(menu)
+            end
+          # end
+        end
+        html << "\n<% end %>"
+      end
+      html << "\n</ul>"
+    end
+  end
+
+private
 
   def self.init_db(data)
     title = data.keys.first
@@ -62,43 +101,6 @@ class MenuBuilder
         links << "'#{menu}'"
       end
     end.join(', ')
-  end
-
-  def self.create_top_nav(data, cascading = true)
-    returning("<ul id=\"top_nav\" class=\"sf-menu\">\n") do |html|
-      if cascading
-        data.each { |top_menu| html << create_menu(top_menu) }
-      else
-        data.each do |top_menu|
-          html << "<li class=\"<%= 'current' if current_page_in?(#{find_all_links(top_menu)}) %>\">"
-          html << "<a href=\""
-          href = find_first_link(top_menu)
-          html << href || "#"
-          html << "\">#{top_menu.keys.first}</a></li>"
-        end
-      end
-      html << "</ul>"
-    end
-  end
-
-  def self.create_side_nav(data, submenu = false)
-    returning("<ul id=\"side_nav\" class=\"sf-menu sf-vertical\">\n") do |html|
-      unless submenu
-        data.each { |top_menu| html << create_menu(top_menu) }
-      else
-        data.each_with_index do |top_menu, idx|
-          # first_link = find_first_link(top_menu)
-          # unless first_link.nil?
-            html << "\n<% #{ idx == 0 ? 'if' : 'elsif' } current_page_in?(#{find_all_links(top_menu)}) %>"
-            top_menu.values.first.each do |menu|
-              html << create_menu(menu)
-            end
-          # end
-        end
-        html << "\n<% end %>"
-      end
-      html << "\n</ul>"
-    end
   end
 
 end

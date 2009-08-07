@@ -3,5 +3,6 @@ ActiveSupport::CoreExtensions::Time::Conversions::DATE_FORMATS.merge!(
   :kmd => "%m월%d일",
   :khm => "%H:%M",
   :klong => "%Y-%m-%d %H:%M",
-  :kym => "%Y년 %m월"
+  :kym => "%Y년 %m월",
+  :ymdhm => "%Y.%m.%d %H:%M"
 )

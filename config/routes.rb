@@ -21,8 +21,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :boards, :has_many => :posts
   map.resources :posts, :has_many => :replies
 
-  map.root :controller => "pages", :action => 'show', :id => 'Home'
-
   map.admin '/admin', :controller => 'admin/boards'
   map.namespace :admin do |admin|
     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
@@ -30,6 +28,8 @@ ActionController::Routing::Routes.draw do |map|
     admin.resources :users
   end
 
+  map.root :controller => 'home'
+  map.home ':page', :controller => 'home', :action => 'show' #, :page => /about|contact/
 
   # The priority is based upon order of creation: first created -> highest priority.
 

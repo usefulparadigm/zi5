@@ -1,6 +1,6 @@
 <ul id="side_nav" class="sf-menu sf-vertical">
 
-<% if current_page_in?('/pages/notice', '/boards/press_release') %><li class="<%= 'current' if current_page_in?('/pages/notice') %>"><a href="/pages/notice">공지사항</a></li>
+<% if current_page_in?('/notice', '/boards/press_release') %><li class="<%= 'current' if current_page_in?('/notice') %>"><a href="/notice">공지사항</a></li>
 <li class="<%= 'current' if current_page_in?('/boards/press_release') %>"><a href="/boards/press_release">보도자료</a></li>
 
 <% elsif current_page_in?('/boards/ruby', '/boards/django', '/pages/library') %><li class="<%= 'current' if current_page_in?('/boards/ruby') %>"><a href="/boards/ruby">루비마을</a></li>
